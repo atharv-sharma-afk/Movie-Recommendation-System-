@@ -1,0 +1,5 @@
+.venv/
+similarity.pkl
+push_error.log
+__pycache__/
+*.ipynb_checkpoints/

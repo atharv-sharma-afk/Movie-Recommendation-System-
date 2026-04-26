@@ -76,29 +76,7 @@ def load_and_preprocess_data(movies_path, credits_path):
     hollywood = movies[['title','tags']]
     hollywood['tags'] = hollywood['tags'].apply(lambda x:" ".join(x))
 
-
-    # -----------------------------
-    # Bollywood Dataset (API)
-    # -----------------------------
-    try:
-        bollywood = pd.read_csv("bollywood_movies.csv")
-
-        bollywood = bollywood[['title','overview']]
-        bollywood.dropna(inplace=True)
-
-        # convert to tags
-        bollywood['tags'] = bollywood['overview'].apply(lambda x: x.lower())
-        bollywood['tags'] = bollywood['tags'].apply(stem)
-
-        bollywood = bollywood[['title','tags']]
-
-        print("Bollywood movies added:", len(bollywood))
-
-        data = pd.concat([hollywood, bollywood])
-
-    except:
-        print("Bollywood dataset not found — using Hollywood only")
-        data = hollywood
+    data = hollywood
 
 
     # -----------------------------
